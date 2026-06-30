@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import useTheme from '@/hooks/useTheme';
 
 import Button from '../Button';
+import Divider from '../Divider/intex';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -32,6 +33,8 @@ const Header = () => {
           <Button variant="ghost" icon={Clock} onClick={() => void navigate('/historico')}>
             <span className="hidden sm:inline">Histórico</span>
           </Button>
+
+          <Divider orientation="vertical" />
 
           <Button
             aria-label={`Mudar para tema ${theme === 'light' ? 'escuro' : 'claro'}`}
