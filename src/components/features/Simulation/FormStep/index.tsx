@@ -3,16 +3,17 @@ import { ArrowLeft, ArrowRight, type LucideIcon } from 'lucide-react';
 import Button from '@/components/shared/Button';
 import Input, { type InputProps } from '@/components/shared/Input';
 
-type SimulationFormStepProps = {
+export interface SimulationFormStepProps {
+  id: string;
   icon: LucideIcon;
   title: string;
   question: string;
   inputProps: InputProps;
   submitButtonProps?: {
     label: string;
-    emojiIcon?: string;
+    emojiIcon?: LucideIcon;
   };
-};
+}
 
 const SimulationFormStep = ({
   icon: Icon,
@@ -46,7 +47,7 @@ const SimulationFormStep = ({
             type="submit"
             variant="primary"
             className="sm:order-2; order-1 flex-1"
-            icon={!submitButtonProps?.emojiIcon ? ArrowRight : undefined}
+            icon={!submitButtonProps?.emojiIcon ? ArrowRight : submitButtonProps.emojiIcon}
           >
             {submitButtonProps?.label ?? 'Próximo'}
           </Button>
