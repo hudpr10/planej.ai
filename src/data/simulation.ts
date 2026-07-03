@@ -10,7 +10,7 @@ import {
 
 import type { SimulationFormStepProps } from '@/components/features/Simulation/FormStep';
 
-export const simulationFormSteps: SimulationFormStepProps[] = [
+export const simulationFormSteps = [
   {
     id: 'income',
     icon: PiggyBank,
@@ -82,4 +82,9 @@ export const simulationFormSteps: SimulationFormStepProps[] = [
       emojiIcon: Sparkles,
     },
   },
-];
+] satisfies SimulationFormStepProps[];
+// Pega o Valor de Cada ID: ['income', 'debts', ...]. Evita que seja uma string genérica
+
+// Monta a estrutura do objteo com chave e valor
+// income: string;
+export type SimulationFormData = Record<(typeof simulationFormSteps)[number]['id'], string>;

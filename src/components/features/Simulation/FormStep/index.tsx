@@ -19,7 +19,7 @@ export interface SimulationFormStepProps {
 
 interface ActionsButtonsProps {
   onBack: () => void;
-  onNext: () => void;
+  onNext: (inputValue: string) => void;
   hideBackButton?: boolean;
 }
 
@@ -39,7 +39,7 @@ const SimulationFormStep = ({
     e.preventDefault();
 
     if (!inputValue) return;
-    onNext();
+    onNext(inputValue);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) =>

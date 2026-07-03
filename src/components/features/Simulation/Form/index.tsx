@@ -1,16 +1,27 @@
 import { useState } from 'react';
 
-import { simulationFormSteps } from '@/data/simulation';
+import { type SimulationFormData, simulationFormSteps } from '@/data/simulation';
+import useSimulationStorage from '@/hooks/useSimulationStorage';
 
 import SimulationFormStep from '../FormStep';
 import SimulationProgress from '../Progress';
 
 const SimulationForm = () => {
+  const { saveFormData } = useSimulationStorage();
   const [currentStepIndex, setCurrentStepIndex] = useState<number>(0);
+  const [formData, setFormData] = useState<SimulationFormData>({} as SimulationFormData);
   const currentStep = simulationFormSteps[currentStepIndex];
 
-  const handleNextStep = () => {
-    if (currentStepIndex + 1 > simulationFormSteps.length - 1) return;
+  const handleNextStep = (inputValue: string) => {
+    const updatedFormData = { ...formData, [currentStep.id]: inputValue };
+    setFormData(updatedFormData);
+    console.log(formData);
+
+    if (currentStepIndex + 1 > simulationFormSteps.length - 1) {
+      saveFormData(updatedFormData);
+      return;
+    }
+
     setCurrentStepIndex((prev) => prev + 1);
   };
 
