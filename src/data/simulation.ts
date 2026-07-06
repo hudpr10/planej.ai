@@ -66,7 +66,7 @@ export const simulationFormSteps = [
     },
   },
   {
-    id: 'goalDeadLine',
+    id: 'goalDeadline',
     icon: CalendarCheck,
     title: 'Prazo desejado',
     question: 'Em quantos meses você planeja atingir esse objetivo?',

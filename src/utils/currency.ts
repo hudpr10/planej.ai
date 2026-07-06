@@ -1,3 +1,4 @@
+// Formatador de input monetário
 export const formatCurrencyInput = (value: string) => {
   const digitsOnly = value.replace(/\D/g, '');
 
@@ -13,3 +14,7 @@ export const formatCurrencyInput = (value: string) => {
 
   return `${formattedInteger},${decimalPart}`;
 };
+
+// Conversor de dinheiro
+export const parseCurrency = (value: string): number =>
+  parseFloat(value.replaceAll('.', '').replaceAll(',', '.').replaceAll('R$', '')) || 0;

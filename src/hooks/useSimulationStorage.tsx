@@ -10,7 +10,14 @@ const useSimulationStorage = () => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify([...savedData, formData]));
   };
 
-  return { saveFormData };
+  const getFormData = (): SimulationFormData | null => {
+    const data = localStorage.getItem(LOCAL_STORAGE_KEY);
+
+    if (data) return JSON.parse(data);
+    return null;
+  };
+
+  return { saveFormData, getFormData };
 };
 
 export default useSimulationStorage;
