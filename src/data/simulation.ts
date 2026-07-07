@@ -85,6 +85,8 @@ export const simulationFormSteps = [
 ] satisfies SimulationFormStepProps[];
 // Pega o Valor de Cada ID: ['income', 'debts', ...]. Evita que seja uma string genérica
 
-// Monta a estrutura do objteo com chave e valor
+// Monta a estrutura do objeto com chave e valor
 // income: string;
 export type SimulationFormData = Record<(typeof simulationFormSteps)[number]['id'], string>;
+
+export type SimulationRecord = SimulationFormData & { id: string };

@@ -22,7 +22,6 @@ const variantClasses = {
 };
 
 const CardInfo = ({ icon: Icon, label, value, subtitle, variant = 'default' }: CardInfoProps) => {
-  console.log(variant);
   const styles = variantClasses[variant];
 
   return (

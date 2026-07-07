@@ -17,11 +17,10 @@ const SimulationForm = () => {
   const handleNextStep = (inputValue: string) => {
     const updatedFormData = { ...formData, [currentStep.id]: inputValue };
     setFormData(updatedFormData);
-    console.log(formData);
 
     if (currentStepIndex + 1 > simulationFormSteps.length - 1) {
-      saveFormData(updatedFormData);
-      void navigate('/resultado');
+      const id = saveFormData(updatedFormData);
+      void navigate(`/resultado/${id}`);
       return;
     }
 
