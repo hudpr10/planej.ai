@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { buildAIPrompt } from '@/data/aiPrompt';
 import { getInsight, type InsightData } from '@/services/aiService';
@@ -6,6 +6,8 @@ import { getInsight, type InsightData } from '@/services/aiService';
 import useSimulationStorage from './useSimulationStorage';
 
 export const useInsight = (id: string) => {
+  const isRequestPending = useRef(false);
+
   const [insight, setInsight] = useState<InsightData | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -23,6 +25,9 @@ export const useInsight = (id: string) => {
         return;
       }
 
+      // Muda o estado o ref
+      // Impede que faça outras requisições até essa ser finalizada
+      isRequestPending.current = true;
       setIsLoading(true);
       setError(null);
 
@@ -34,6 +39,7 @@ export const useInsight = (id: string) => {
       } catch {
         setError('Erro ao gerar diagnóstico. Tente novamente.');
       } finally {
+        isRequestPending.current = false;
         setIsLoading(false);
       }
     },
@@ -42,10 +48,7 @@ export const useInsight = (id: string) => {
 
   useEffect(() => {
     // Evita o loop infinito de requisições
-    if (insight || isLoading || error) {
-      return;
-    }
-
+    if (insight || isLoading || error || isRequestPending.current) return;
     fetchInsight(id);
   }, [id, insight, isLoading, error, fetchInsight]);
 
