@@ -38,7 +38,7 @@ const AIInsightCard = ({ simulationId }: { simulationId: string }) => {
           onRetry={() => fetchInsight(simulationId)}
         />
       )}
-      {!isLoading && insight && !error && <Content />}
+      {!isLoading && insight && !error && <Content insight={insight} />}
     </div>
   );
 };
