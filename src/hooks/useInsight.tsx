@@ -1,18 +1,23 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { buildAIPrompt } from '@/data/aiPrompt';
+import type { SimulationRecord } from '@/data/simulation';
 import { getInsight, type InsightData } from '@/services/aiService';
 
 import useSimulationStorage from './useSimulationStorage';
 
 export const useInsight = (id: string) => {
   const isRequestPending = useRef(false);
+  const { getFormData, updateFormData } = useSimulationStorage();
 
-  const [insight, setInsight] = useState<InsightData | null>(null);
+  const [insight, setInsight] = useState<InsightData | null>(() => {
+    const simulation = getFormData(id);
+    if (simulation?.insight) return simulation.insight;
+    return null;
+  });
+
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  const { getFormData } = useSimulationStorage();
 
   // Necessário o uso do useCallback
   // Essa função entra no array de dependências do useEffect
@@ -35,6 +40,11 @@ export const useInsight = (id: string) => {
         const prompt = buildAIPrompt(simulation);
         const data = await getInsight(prompt);
         setInsight(data);
+
+        updateFormData(simulationId, {
+          ...simulation,
+          insight: data,
+        } as SimulationRecord);
         return data;
       } catch {
         setError('Erro ao gerar diagnóstico. Tente novamente.');
@@ -43,7 +53,7 @@ export const useInsight = (id: string) => {
         setIsLoading(false);
       }
     },
-    [getFormData],
+    [getFormData, updateFormData],
   );
 
   useEffect(() => {
