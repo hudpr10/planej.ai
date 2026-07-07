@@ -1,6 +1,7 @@
 import { CalendarCheck, Goal, PiggyBank } from 'lucide-react';
 import { useParams } from 'react-router-dom';
 
+import AIInsightCard from '@/components/features/SimulationResults/AIInsightCard';
 import Card from '@/components/features/SimulationResults/Card';
 import ResumeCard from '@/components/features/SimulationResults/ResumeCard';
 import PageHero from '@/components/shared/PageHero';
@@ -42,9 +43,7 @@ const SimulationResultsPage = () => {
         />
       </div>
       <div className="grid gap-6 lg:grid-cols-3">
-        <div className="bg-card order-2 rounded-2xl p-6 shadow-[4px_4px_18px_0px_rgba(0,0,0,0.2)] lg:order-1 lg:col-span-2">
-          Painel de Insights
-        </div>
+        <AIInsightCard simulationId={data.id} />
         <div className="order-1 flex flex-col gap-6 lg:order-2">
           <ResumeCard total={data.income} expenses={data.expenses} debts={data.debts} />
         </div>
