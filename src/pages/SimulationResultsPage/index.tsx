@@ -8,6 +8,8 @@ import PageHero from '@/components/shared/PageHero';
 import useSimulationStorage from '@/hooks/useSimulationStorage';
 import { calcMonthlySavings } from '@/utils/simulation';
 
+import NotFoundPage from '../NotFoundPage';
+
 const SimulationResultsPage = () => {
   const { id } = useParams<{ id: string }>();
   const { getFormData } = useSimulationStorage();
@@ -15,7 +17,7 @@ const SimulationResultsPage = () => {
   const data = id ? getFormData(id) : null;
 
   if (!data) {
-    return <p>Simulação não encontrada.</p>;
+    return <NotFoundPage />;
   }
 
   const monthlySavings: number = calcMonthlySavings(data);
