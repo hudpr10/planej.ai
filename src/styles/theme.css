@@ -19,6 +19,9 @@ para o tailwind não sobrescrever classes
     --input: #fcfcfe;
     --skeleton-base-color: #e1e1f1;
     --skeleton-highlight-color: #c5c5df;
+    --green: #499a13;
+    --yellow: #fdcd31;
+    --red: #ff0052;
   }
 
   [data-theme='dark'] {
@@ -34,6 +37,9 @@ para o tailwind não sobrescrever classes
     --input: #232131;
     --skeleton-base-color: #3e3e42;
     --skeleton-highlight-color: #2a2833;
+    --green: #499a13;
+    --yellow: #fdcd31;
+    --red: #ff0052;
   }
 }
 
@@ -53,4 +59,7 @@ para o tailwind não sobrescrever classes
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
   --color-skeleton-base: var(--skeleton-base-color);
   --color-skeleton-highlight: var(--skeleton-highlight-color);
+  --color-green: var(--green);
+  --color-yellow: var(--yellow);
+  --color-red: var(--red);
 }

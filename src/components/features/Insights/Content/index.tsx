@@ -31,15 +31,15 @@ const OrderedList = ({ items }: { items: string[] }) => {
 const statusStyles = {
   viable: {
     label: 'Meta viável no prazo',
-    className: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400',
+    className: 'bg-green/40 text-green',
   },
   needs_adjustment: {
     label: 'Ajuste necessário',
-    className: 'bg-ambar-100 text-ambar-700 dark:bg-ambar-900/30 dark:text-ambar-400',
+    className: 'bg-yellow/20 text-yellow',
   },
   unfeasible: {
     label: 'Meta inviável no prazo',
-    className: 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400',
+    className: 'bg-red/40 text-red',
   },
 };
 
