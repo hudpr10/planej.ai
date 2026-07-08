@@ -22,8 +22,8 @@ const Card = ({ data, onDelete }: { data: SimulationRecord; onDelete: () => void
   const monthlySavings = calcMonthlySavings(data);
 
   return (
-    <li className="bg-card flex w-310 items-center gap-8 rounded-2xl p-8 shadow-[4px_4px_18px_0px_rgba(0,0,0,0.2)]">
-      <div className="bg-primary/30 rounded-xl p-2">
+    <li className="bg-card flex flex-col gap-6 rounded-2xl p-6 shadow-[4px_4px_18px_0px_rgba(0,0,0,0.2)] lg:flex-row">
+      <div className="bg-primary/30 h-min w-min rounded-xl p-2">
         <Goal size={24} className="text-primary" />
       </div>
 
@@ -43,20 +43,25 @@ const Card = ({ data, onDelete }: { data: SimulationRecord; onDelete: () => void
         value={`R$ ${monthlySavings.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`}
       />
 
-      <Divider orientation="vertical" spacing={0} />
+      <Divider orientation="horizontal" className="lg:hidden" />
+      <Divider orientation="vertical" className="hidden lg:block" />
 
-      <Button variant="ghost" onClick={onDelete}>
-        <Trash2 className="text-red-500" />
-      </Button>
+      <div className="flex justify-between lg:gap-8">
+        <Button variant="ghost" onClick={onDelete}>
+          <Trash2 className="text-red-500" />
+        </Button>
 
-      <Button
-        variant="secondary"
-        className="whitespace-nowrap"
-        icon={ExternalLink}
-        onClick={handleNavigate}
-      >
-        Ver detalhes
-      </Button>
+        <Divider orientation="vertical" className="lg:hidden" />
+
+        <Button
+          variant="secondary"
+          className="h-min whitespace-nowrap"
+          icon={ExternalLink}
+          onClick={handleNavigate}
+        >
+          Ver detalhes
+        </Button>
+      </div>
     </li>
   );
 };
