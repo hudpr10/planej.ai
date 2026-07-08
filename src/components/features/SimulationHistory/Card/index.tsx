@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import Button from '@/components/shared/Button';
 import Divider from '@/components/shared/Divider/intex';
 import type { SimulationRecord } from '@/data/simulation';
-import useSimulationStorage from '@/hooks/useSimulationStorage';
 import { calcMonthlySavings } from '@/utils/simulation';
 
 const CardData = ({ title, value }: { title: string; value: string }) => {
@@ -16,11 +15,9 @@ const CardData = ({ title, value }: { title: string; value: string }) => {
   );
 };
 
-const Card = ({ data }: { data: SimulationRecord }) => {
+const Card = ({ data, onDelete }: { data: SimulationRecord; onDelete: () => void }) => {
   const navigate = useNavigate();
   const handleNavigate = () => void navigate(`/resultado/${data.id}`);
-
-  const { excludeFormData } = useSimulationStorage();
 
   const monthlySavings = calcMonthlySavings(data);
 
@@ -48,7 +45,7 @@ const Card = ({ data }: { data: SimulationRecord }) => {
 
       <Divider orientation="vertical" spacing={0} />
 
-      <Button variant="ghost" onClick={() => excludeFormData(data.id)}>
+      <Button variant="ghost" onClick={onDelete}>
         <Trash2 className="text-red-500" />
       </Button>
 
