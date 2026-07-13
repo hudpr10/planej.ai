@@ -1,3 +1,4 @@
+import type { Content } from '@google/genai';
 import {
   CalendarCheck,
   CreditCard,

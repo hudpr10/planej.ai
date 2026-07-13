@@ -27,6 +27,10 @@ const RESPONSE_SCHEMA = `{
   motivation: {
     content: '<Mensagem final motivacional e personalizada, citando o meta pelo nome.>',
   },
+  chatHistory: {
+    role: 'user' | 'model';
+    parts: { text: '<Conversa entre o usuário e o modelo>' }[];
+  }[]
 }`;
 
 export const buildAIPrompt = (simulation: SimulationRecord) => {
@@ -35,9 +39,7 @@ export const buildAIPrompt = (simulation: SimulationRecord) => {
   const monthlySavings = Number(calcMonthlySavings(simulation));
   const monthlySavingsNeeded = Number(parseCurrency(goalAmount)) / Number(goalDeadline);
 
-  return `Você é um educador financeiro especializado em finanças pessoais.
-    Analise os dados abaixo e gere um diagnóstico financeiro personalizado com linguagem clara, didática e encorajadora, voltado para pessoas sem conhecimento financiero. O diagnóstico será exibido diretamente ao usuário no app, fale sempre em segunda pessoa ("Você tem...", "sua meta...").
-    
+  return `
     Dados da simulação
     - Renda mensagel bruta: ${income}
     - Custos fixos essenciais: ${expenses}
