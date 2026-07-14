@@ -38,16 +38,12 @@ export const useInsight = (id: string) => {
       try {
         const prompt = buildAIPrompt(simulation);
         const response = await getInsight(prompt);
-        setInsight(response?.data);
 
         if (response) {
           setInsight(response.data);
 
           // Salvamos apenas o insight estruturado inicialmente
-          updateFormData(simulationId, {
-            ...simulation,
-            insight: response.data ?? undefined,
-          });
+          updateFormData(simulationId, { ...simulation, insight: response.data ?? undefined });
 
           return response.data;
         }

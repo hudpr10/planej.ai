@@ -5,7 +5,7 @@ const LOCAL_STORAGE_KEY = 'simulation_data';
 const useSimulationStorage = () => {
   const saveFormData = (formData: SimulationFormData) => {
     const id = crypto.randomUUID();
-    const record: SimulationRecord = {
+    const record = {
       ...formData,
       id,
       timestamp: new Date().toLocaleDateString('pt-BR'),

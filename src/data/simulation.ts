@@ -1,4 +1,3 @@
-import type { Content } from '@google/genai';
 import {
   CalendarCheck,
   CreditCard,
@@ -84,7 +83,7 @@ export const simulationFormSteps = [
       emojiIcon: Sparkles,
     },
   },
-] satisfies SimulationFormStepProps[];
+] as const satisfies SimulationFormStepProps[];
 // Pega o Valor de Cada ID: ['income', 'debts', ...]. Evita que seja uma string genérica
 
 // Monta a estrutura do objeto com chave e valor
